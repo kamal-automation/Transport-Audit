@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشخيص الأسطول ونظام الحجز الرقمي | نقل سياحي</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Arabic Fonts (Cairo & Alex) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#0B192C',
+                            900: '#1E3E62',
+                            950: '#060D17',
+                        },
+                        gold: {
+                            400: '#F1C40F',
+                            500: '#D4AF37',
+                            600: '#AA7C11',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #060D17;
+            color: #F3F4F6;
+        }
+
+        .custom-glass {
+            background: rgba(14, 27, 46, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF0B3 0%, #D4AF37 50%, #996B00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+            transition: all 0.3s ease;
+        }
+
+        .gold-btn:hover {
+            background: linear-gradient(135deg, #F1C40F 0%, #D4AF37 100%);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .option-card {
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .option-card:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .option-card.selected {
+            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.12);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060D17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E3E62;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-navy-950">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-40 bg-navy-950/90 backdrop-blur-md border-b border-gold-500/20 py-4 px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-500 font-bold text-xl">
+                    <i class="fa-solid fa-van-shuttle"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg sm:text-xl text-white">النقل السياحي الذكي</h1>
+                    <p class="text-xs text-gray-400">التشخيص الرقمي للأسطول وحجوزات B2B / B2C</p>
+                </div>
+            </div>
+            <div class="hidden sm:flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full text-xs font-semibold">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                خدمة مباشرة ومؤمنة 100%
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-8 sm:py-12">
+
+        <!-- Intro Banner Card -->
+        <section class="custom-glass rounded-2xl p-6 sm:p-8 mb-8 shadow-2xl relative overflow-hidden">
+            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="flex items-center gap-2 text-gold-500 text-sm font-bold mb-3">
+                <i class="fa-solid fa-bolt"></i>
+                <span>استبيان تقني سريع (أقل من 3 دقائق)</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4 leading-tight">
+                تشخيص الأسطول ونظام الحجز الرقمي | <span class="gold-gradient-text">النقل السياحي بالمغرب</span>
+            </h2>
+
+            <div class="text-gray-300 text-sm sm:text-base leading-relaxed space-y-3 mb-6 border-r-2 border-gold-500 pr-4">
+                <p>
+                    <strong>السلام عليكم و رحمة الله.</strong>
+                </p>
+                <p>
+                    هذا التشخيص السريع مخصص لشركات ومحترفي النقل السياحي بالمغرب. 
+                    الهدف من هذه الأسئلة هو فهم طبيعة نشاطك وحجم أسطولك، سواء كنت تقدم خدماتك <strong>للزبناء الأفراد (B2C)</strong> كالمطارات والجولات السياحية، أو <strong>للشركات والوكالات (B2B)</strong>.
+                </p>
+                <p class="text-gold-400/90 font-medium">
+                    الهدف النهائي: اقتراح موقع حجز مباشر ونظام آلي منظم يسهل عليك تدفق الحجوزات، يحد من الفوضى، ويخرجك كلياً من دوامة العمولات المرتفعة.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10 text-xs text-gray-400">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-gold-500"></i>
+                    <span>جميع البيانات سرية ومحمية بـ 100%</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-clock text-gold-500"></i>
+                    <span>11 سؤالاً هيّناً وسريعاً</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Bar -->
+        <div class="mb-8">
+            <div class="flex justify-between items-center text-xs text-gray-400 mb-2">
+                <span id="progress-text">التقدم: السؤال 1 من 11</span>
+                <span id="progress-percent" class="text-gold-400 font-bold">9%</span>
+            </div>
+            <div class="w-full bg-navy-900 rounded-full h-2.5 overflow-hidden border border-white/5">
+                <div id="progress-bar" class="bg-gradient-to-l from-gold-400 to-gold-600 h-2.5 rounded-full transition-all duration-300" style="width: 9%"></div>
+            </div>
+        </div>
+
+        <!-- Diagnostic Interactive Form -->
+        <form id="diagnosticForm" onsubmit="handleFormSubmit(event)">
+            
+            <!-- Questions Wrapper -->
+            <div id="questions-container" class="space-y-6">
+                <!-- Dynamic Questions Inserted via JS -->
+            </div>
+
+            <!-- WhatsApp Number Input Section -->
+            <div class="custom-glass rounded-2xl p-6 sm:p-8 mt-8 border-gold-500/30">
+                <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                    <span>معلومات التواصل لتلقي التقرير التقني</span>
+                </h3>
+                <p class="text-xs text-gray-400 mb-4">
+                    يرجى إدخال رقم الواتساب الخاص بالشركة أو المسير ليرسل لك فريقنا التقرير والتوصيات المخصصة.
+                </p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1 font-semibold">اسم الشركة / المسير <span class="text-red-400">*</span></label>
+                        <input type="text" id="clientName" required placeholder="مثال: شركة أطلس للنقل / سي محمد" 
+                            class="w-full bg-navy-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-gray-300 mb-1 font-semibold">رقم الواتساب المباشر <span class="text-red-400">*</span></label>
+                        <input type="tel" id="clientPhone" required placeholder="06XXXXXXXX أو 2126XXXXXXXX" 
+                            class="w-full bg-navy-950 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 transition text-right" dir="ltr">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="mt-8 text-center">
+                <button type="submit" class="gold-btn w-full sm:w-auto min-w-[280px] text-navy-950 font-extrabold text-base sm:text-lg px-8 py-4 rounded-xl shadow-lg flex items-center justify-center gap-3 mx-auto">
+                    <span>إرسال التشخيص والحصول على التقرير</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+
+    </main>
+
+    <!-- Confirmation / Privacy Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="custom-glass max-w-xl w-full rounded-2xl p-6 sm:p-8 text-right border-gold-500/40 relative animate-fade-in shadow-2xl">
+            
+            <div class="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-bold text-white text-center mb-2">
+                تم استلام التشخيص بنجاح!
+            </h3>
+
+            <div class="bg-navy-950/80 rounded-xl p-4 border border-white/10 my-4 text-xs sm:text-sm leading-relaxed text-gray-200 space-y-3">
+                <p class="font-bold text-gold-400 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-check"></i>
+                    <span>تأكيد سرية المعطيات (100% Confidentiel):</span>
+                </p>
+                <p>
+                    شكراً جزيلاً على وقتك الثمين وتعبئة هذا التشخيص.
+                </p>
+                <p>
+                    نود إحاطتكم علماً بأن <strong>جميع المعطيات والبيانات الخاصة بأسطولكم وشركتكم سرية ومحمية بالكامل</strong>، ولا تُستخدم إلا لإعداد تقريركم التقني الخاص بتطوير موقع إلكتروني ونظام حجز آلي يسهل تدفق الحجوزات المباشرة وينظم أسطولكم.
+                </p>
+                <p class="text-gray-400">
+                    فريقنا سيقوم بتحليل إجاباتكم فوراً، وسنتواصل معكم قريباً عبر الواتساب لمناقشة الخطوات القادمة.
+                </p>
+            </div>
+
+            <p class="text-center text-gold-500 font-semibold text-sm mb-6">
+                نتمنى لكم موسماً سياحياً موفقاً وناجحاً!
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button onclick="sendToWhatsAppDirect()" class="gold-btn flex-1 py-3 px-4 rounded-xl font-bold text-navy-950 text-sm flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>متابعة التقرير عبر الواتساب</span>
+                </button>
+                <button onclick="closeModal()" class="bg-white/10 hover:bg-white/20 text-white py-3 px-4 rounded-xl font-medium text-sm transition">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-6 text-center text-xs text-gray-500 bg-navy-950">
+        <p>© 2026 منصة تشخيص النقل السياحي بالمغرب. جميع الحقوق محفوظة.</p>
+        <p class="mt-1 text-gray-600">نظام حجز آلي مباشر • حلول anti-commission • حماية المعطيات الشخصية</p>
+    </footer>
+
+    <!-- JavaScript App Logic -->
+    <script>
+        // Diagnostic Questions Array
+        const questionsData = [
+            {
+                id: 1,
+                title: "1. شحال هو الحجم الفعلي للأسطول ديالك في موسم الذروة؟",
+                options: [
+                    "من 1 لـ 3 سيارات (خدمة فردية / أسطول مصغر).",
+                    "من 4 لـ 10 سيارات (شركة متوسطة تحتاج تنظيم وإدارة أدق).",
+                    "أكثر من 10 سيارات (أسطول كبير، يتطلب منصة حجز آلية متكاملة)."
+                ]
+            },
+            {
+                id: 2,
+                title: "2. شنو هي الخدمة اللي كتجيب ليك أعلى هامش ربح وكتعتبر هي الأساس ديال البزنس ديالك؟",
+                options: [
+                    "النقل من وإلى المطار (Transfert Aéroport).",
+                    "الجولات السياحية اليومية (Excursions: مراكش، الصويرة، أوزود...).",
+                    "كراء السيارات مع سائق بالساعات أو الأيام (Mise à disposition).",
+                    "العقود الكبرى B2B مع الفنادق ووكالات الأسفار."
+                ]
+            },
+            {
+                id: 3,
+                title: "3. ملي كيسولك شي كليان جديد على الثمن فالتلفون أو الواتساب، فين غالباً كيمشي أو كضيع الفرصة؟",
+                options: [
+                    "عدم عرض الأسعار بوضوح وبسرعة يجعله يفضل المنافس.",
+                    "بطء مدة الرد في الواتساب أو الهاتف (الزبون لا ينتظر طويلاً).",
+                    "غياب خيار الأداء الإلكتروني أو عدم توفر الثقة الكافية لديه.",
+                    "ضعف توثيق المصداقية الرقمية (آراء الكليان، الرخصة، التأمين)."
+                ]
+            },
+            {
+                id: 4,
+                title: "4. شحال من مرة كتوقع ليك طوموبيل عامرة أو مكرية، ويجيك كليان آخر باغيها في نفس الوقت وتضيعها؟",
+                options: [
+                    "تحدث كثيراً في المواسم وتسبب لنا إزعاجاً وفقداناً للزبائن.",
+                    "تحدث أحياناً بشكل غير منتظم ولكنها مزعجة.",
+                    "نادراً جداً، عندي نظام ورقي أو تتبع تقليدي يكفي حالياً."
+                ]
+            },
+            {
+                id: 5,
+                title: "5. منين كيجيوك 80% من الحجوزات الفعلية ديالك حالياً؟",
+                options: [
+                    "الواتساب وشبكة العلاقات الشخصية المباشرة.",
+                    "منصات الحجز العالمية (مثل GetYourGuide وغيرها مع اقتطاع عمولات).",
+                    "محركات البحث وخرائط جوجل (Google Maps).",
+                    "الشراكات التقليدية مع الفنادق ووكالات الوساطة."
+                ]
+            },
+            {
+                id: 6,
+                title: "6. كيفاش كتقيم الحضور الرقمي الحالي ديال شركتك في السوق؟",
+                options: [
+                    "عندي صفحة Google Maps نشطة ولكن بدون موقع إلكتروني احترافي.",
+                    "عندي موقع إلكتروني قديم ومهمل لا يولد أي حجوزات.",
+                    "كنعتمد فقط على مواقع التواصل الاجتماعي (إنستغرام / فيسبوك).",
+                    "غنبداو كلياً من الصفر."
+                ]
+            },
+            {
+                id: 7,
+                title: "7. واش عمر شي كليان قالك بلي محركات البحث الذكية أو الإنترنت هي اللي صيفطتو عندك؟",
+                options: [
+                    "لا، الاعتماد كلياً على الطرق التقليدية وتوصيات الناس.",
+                    "أحياناً كيجيو زبناء شافو تقييماتنا أو بحثو في الإنترنت.",
+                    "نعم، كاين ملاحظة بلي الناس ولات تبحث بطرق أذكى وأسرع أونلاين."
+                ]
+            },
+            {
+                id: 8,
+                title: "8. شنو هي اللغة الأساسية اللي كيحتاجوها الكليان المستهدفين ديالك بزاف؟",
+                options: [
+                    "الفرنسية أساسية جداً (سياح أوروبيون أو مغاربة مقيمون بالخارج).",
+                    "الإنجليزية ضرورية ومطلوبة بكثرة (زبناء من جنسيات دولية مختلفة).",
+                    "العربية والدارجة كافيتان بنسبة كبيرة (السوق المحلي والمغاربي).",
+                    "تعدد اللغات ضروري ومدمج (فرنسية، إنجليزية وعربية معاً)."
+                ]
+            },
+            {
+                id: 9,
+                title: "9. شنو هو السقف الاستثماري المخصص لتطوير بنيتك الرقمية (موقع حجز آلي + ربط مباشر بالواتساب)؟",
+                options: [
+                    "أقل من 5000 درهم (أريد واجهة تعريفية أساسية وبسيطة).",
+                    "من 5000 إلى 15000 درهم (أريد نظام حجز مرن ومنظم ومحترف).",
+                    "أكثر من 15000 درهم (أريد منصة رقمية متكاملة مدعومة بأنظمة الدفع والإعلانات)."
+                ]
+            },
+            {
+                id: 10,
+                title: "10. واش مستعد تخصص ميزانية شهرية للإعلانات الموجهة (Google Ads) لضمان تدفق مستمر للزبناء؟",
+                options: [
+                    "نعم، فاهم بلي الموقع وحده لا يولد حجوزات بدون ترافيك وإعلانات.",
+                    "نفضل الاعتماد على السيو المجاني (SEO) وخرائط جوجل في المرحلة الأولى.",
+                    "مازال ما متأكدش، بغيت نناقش هاد النقطة تقنياً في المكالمة الموالية."
+                ]
+            },
+            {
+                id: 11,
+                title: "11. شنو هي الطريقة المثلى اللي كتفضل تعتمدها لاستلام أموال الحجوزات في النظام الجديد؟",
+                options: [
+                    "الدفع الكامل المسبق أونلاين (عبر بطاقة بنكية / CMI / Stripe).",
+                    "أداء عربون جزئي أونلاين لتأكيد الحجز، والباقي نقداً (كاش) مع السائق.",
+                    "تأكيد الحجز الفوري عبر الواتساب والأداء المباشر مع السائق.",
+                    "طلب تسعيرة مخصصة (Devis) لكل رحلة على حدة قبل تأكيد الاتفاق."
+                ]
+            }
+        ];
+
+        // Store User Answers
+        const userAnswers = {};
+
+        // Render Questions
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            container.innerHTML = '';
+
+            questionsData.forEach((q, qIndex) => {
+                const card = document.createElement('div');
+                card.className = 'custom-glass rounded-2xl p-6 shadow-md border border-white/5';
+                
+                let optionsHTML = '';
+                q.options.forEach((opt, optIndex) => {
+                    optionsHTML += `
+                        <label class="option-card flex items-center p-4 rounded-xl cursor-pointer text-sm text-gray-200" 
+                               onclick="selectOption(${q.id}, '${escapeQuote(opt)}', this)">
+                            <input type="radio" name="question_${q.id}" value="${escapeQuote(opt)}" class="hidden" required>
+                            <div class="radio-indicator w-5 h-5 rounded-full border border-gold-500/50 flex items-center justify-center text-xs ml-3 text-gold-400">
+                                <i class="fa-solid fa-check opacity-0 transition-opacity"></i>
+                            </div>
+                            <span class="flex-grow">${opt}</span>
+                        </label>
+                    `;
+                });
+
+                card.innerHTML = `
+                    <h3 class="font-bold text-white text-base sm:text-lg mb-4 leading-snug">
+                        ${q.title}
+                    </h3>
+                    <div class="space-y-3">
+                        ${optionsHTML}
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function escapeQuote(str) {
+            return str.replace(/'/g, "\\'");
+        }
+
+        // Option Selector
+        function selectOption(questionId, value, element) {
+            userAnswers[questionId] = value;
+            
+            // Remove 'selected' style from siblings
+            const siblings = element.parentElement.querySelectorAll('.option-card');
+            siblings.forEach(el => {
+                el.classList.remove('selected');
+                const icon = el.querySelector('.fa-check');
+                if(icon) icon.classList.add('opacity-0');
+            });
+
+            // Add 'selected' style to clicked element
+            element.classList.add('selected');
+            const currentIcon = element.querySelector('.fa-check');
+            if(currentIcon) currentIcon.classList.remove('opacity-0');
+
+            updateProgressBar();
+        }
+
+        // Progress Calculation
+        function updateProgressBar() {
+            const answeredCount = Object.keys(userAnswers).length;
+            const total = questionsData.length;
+            const percentage = Math.round((answeredCount / total) * 100);
+
+            document.getElementById('progress-bar').style.width = `${Math.max(percentage, 9)}%`;
+            document.getElementById('progress-percent').innerText = `${percentage}%`;
+            document.getElementById('progress-text').innerText = `التقدم: السؤال ${answeredCount} من ${total}`;
+        }
+
+        // Handle Form Submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const answeredCount = Object.keys(userAnswers).length;
+            if (answeredCount < questionsData.length) {
+                alert('يرجى الإجابة على جميع الأسئلة 11 لإتمام التشخيص.');
+                return;
+            }
+
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+
+            if (!name || !phone) {
+                alert('يرجى إدخال اسم الشركة ورقم الواتساب.');
+                return;
+            }
+
+            // Show Confirmation Modal
+            document.getElementById('confirmationModal').classList.remove('hidden');
+        }
+
+        // Generate WhatsApp Message & Send
+        function sendToWhatsAppDirect() {
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+
+            let message = `*تشخيص أسطول النقل السياحي | طلب تقرير تقني*\n\n`;
+            message += `👤 *اسم الشركة/المسير:* ${name}\n`;
+            message += `📞 *رقم التواصل:* ${phone}\n\n`;
+            message += `--- *الإجابات والتشخيص* ---\n\n`;
+
+            questionsData.forEach(q => {
+                const answer = userAnswers[q.id] || 'غير محدد';
+                message += `*${q.title}*\n➔ ${answer}\n\n`;
+            });
+
+            message += `🔒 *ملاحظة:* تم إرسال هذه البيانات بغرض إعداد التقرير التقني ومقترح موقع الحجز المباشر.`;
+
+            // WhatsApp Consultant Target Number (Can be configured)
+            const consultantWhatsApp = "212600000000"; 
+            const encodedMessage = encodeURIComponent(message);
+            const waURL = `https://wa.me/${consultantWhatsApp}?text=${encodedMessage}`;
+
+            window.open(waURL, '_blank');
+        }
+
+        function closeModal() {
+            document.getElementById('confirmationModal').classList.add('hidden');
+        }
+
+        // On Load Initializer
+        window.onload = function() {
+            renderQuestions();
+        };
+    </script>
+</body>
+</html>
